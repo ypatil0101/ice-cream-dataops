@@ -1,12 +1,12 @@
 select
-  `external_id` as externalId,
-  `name` as name,
-  `description` as description,
-  if(
-      `parent_external_id` == ''
-      OR `parent_external_id` == null,
-      null,
-      node_reference('icapi_dm_space', `parent_external_id`)
-  ) as parent
-  from
-  `ice-cream-factory-db`.`assets`
+  timeseries.externalId,
+  array(node_reference("icapi_dm_space", assets.externalId)) as assets,
+  timeseries.isStep,
+  timeseries.type,
+  timeseries.space
+from
+  cdf_data_models("cdf_cdm", "CogniteCore", "v1", "CogniteTimeSeries") as timeseries
+left join
+  cdf_data_models("cdf_cdm", "CogniteCore", "v1", "CogniteAsset") as assets
+ON
+  split_part(timeseries.externalId, ":", 1) = assets.externalId
