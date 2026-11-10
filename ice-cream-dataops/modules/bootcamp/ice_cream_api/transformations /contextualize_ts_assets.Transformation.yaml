@@ -1,14 +1,13 @@
-externalId: create_asset_hierarchy
-name: Create Cognite Asset Hierarchy
+externalId: contextualize_ts_assets
+name: Contextualize TimeSeries and Assets
 destination:
   dataModel:
     space: cdf_cdm
-    externalId: contextualize_ts_assets
+    externalId: CogniteCore
     version: v1
     destinationType: CogniteTimeSeries
   type: instances
-  ignoreNullFields: true
-isPublic: true
+ignoreNullFields: true
 conflictMode: upsert
 authentication:
   clientId: {{ icapi_extractors_client_id }}
