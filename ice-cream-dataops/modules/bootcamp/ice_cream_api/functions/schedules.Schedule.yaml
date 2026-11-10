@@ -9,7 +9,7 @@
 
     - name: Backfill all sites once a day for the last 5 days (gap filling)
   functionExternalId: icapi_datapoints_extractor
-  cronExpression: "21 0 * * *"
+  cronExpression: "0 0 * * *"
   data:
     backfill: True
     hours: 120
